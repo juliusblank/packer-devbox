@@ -7,7 +7,7 @@
         "vm_name": "devbox",
         "build_proxy": "{{env `http_proxy`}}",
         "run_proxy": "",
-        "version": "1.0.{{env `ATLAS_BUILD_CONFIGURATION_VERSION`}}"
+        "version": "1.0.{{env `ATLAS_BUILD_NUMBER`}}"
     },
 
     "push": {
