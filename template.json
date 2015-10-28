@@ -15,17 +15,10 @@
         "token": "{{user `atlas_token`}}"
     },
 
-
-    "provisioners": [
+"provisioners": [
         {
             "type": "shell",
-            "execute_command": "echo 'vagrant'| {{ .Vars }} sudo -E -S sh '{{.Path}}'",
-            "environment_vars": [
-                "build_proxy={{user `build_proxy`}}",
-                "run_proxy={{user `run_proxy`}}"
-            ],
             "scripts": [
-              "scripts/init.sh",
                 "scripts/base.sh",
                 "scripts/virtualbox.sh",
                 "scripts/vmware.sh",
@@ -33,8 +26,16 @@
                 "scripts/docker.sh",
                 "scripts/cleanup.sh",
                 "scripts/zerodisk.sh"
-            ]
-    }
+            ],
+            "override": {
+                "virtualbox-iso": {
+                    "execute_command": "echo 'vagrant'|sudo -S bash '{{.Path}}'"
+                },
+                "vmware-iso": {
+                    "execute_command": "echo 'vagrant'|sudo -S bash '{{.Path}}'"
+                }
+            }
+        }
   ],
   
   "post-processors": [
